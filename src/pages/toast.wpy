@@ -1,0 +1,41 @@
+<template>
+  <toast />
+  <view class="padding-10">
+    <button @tap="showSuccess" class="btn btn-kai" style="margin-top:100px">点击弹出toast</button>
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+  import Toast from 'kai-ui/Toast'
+
+  export default class ToastPage extends wepy.page {
+    config = {
+      navigationBarTitleText: 'Toast 轻提示'
+    }
+    data = {}
+
+    components = {
+      toast: Toast
+    }
+
+    methods = {
+      showSuccess () {
+        const options = {
+          content: '加载中...',
+          position: 'middle',
+          duration: 10000,
+          type: 'loading',
+          afterClose: 'afterClose'
+        }
+        this.$invoke('toast', 'show', options)
+      }
+    }
+
+    events = {
+      afterClose () {
+        console.log('弹出框关闭')
+      }
+    }
+  }
+</script>

@@ -1,0 +1,77 @@
+<style lang="less">
+.icon-right{
+  font-size:12px;
+}
+.bg-white{
+  background-color: #fff;
+}
+</style>
+<template>
+  <view class="kai-content">
+    <view class="padding-10  bg-white">
+      <view class="panel">
+        <select :selectData.sync="selectData"/>
+      </view>
+      <view class="panel">
+        <select1 :selectData.sync="selectData1"/>
+      </view>
+    </view>
+    <view class="padding-10">
+      <button class="btn btn-kai" catchtap="changeSelect">切换icon位置</button>
+    </view>
+  </view>
+</template>
+
+<script>
+import wepy from 'wepy'
+import select from 'kai-ui/Select'
+
+export default class SelectPage extends wepy.page {
+  config = {
+    navigationBarTitleText: 'Select 选择'
+  }
+
+  components = {
+    select: select,
+    select1: select
+  }
+
+  data = {
+    selectData: {
+      id: 0,
+      list: [{name: '选择1'}, {name: '选择2'}, {name: '选择3'}],
+      selectIndex: 0,
+      class: 'select-success'
+    },
+    selectData1: {
+      id: 1,
+      list: [{name: '选择1'}, {name: '选择2'}],
+      selectIndex: 1,
+      class: 'select-danger',
+      event: 'select-test'
+    },
+    position: ''
+  }
+
+  computed = {}
+
+  methods = {
+    changeSelect () {
+      const {selectData1} = this
+      this.position = this.position === 'left' ? 'right' : 'left'
+      selectData1.class = 'select-danger select-' + this.position
+    }
+  }
+
+  events = {
+    'select-item': (data) => {
+      console.log('item' + data)
+    },
+    'select-test': (data) => {
+      console.log('test' + data)
+    }
+  }
+
+  onLoad() {}
+}
+</script>
