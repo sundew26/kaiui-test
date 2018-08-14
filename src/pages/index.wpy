@@ -20,7 +20,7 @@
 <template>
   <view class="kai-content">
     <view class="icon-img">
-      kai-ui
+      kai-ui test 
     </view>
     <repeat for="{{cellDemoList}}" index="index" item="item" key="panel-{{index}}">
       <panel>
