@@ -1,0 +1,92 @@
+<template>
+  <view class="padding-10 font-12">基础样式：</view>
+  <searchbar
+    placeholder="文艺复古长裙"
+    :datasource.sync="datasource"
+    @bindsearch.user="searchEvent"
+    @bindcancel.user="cancelEvent"
+    />
+  <view class="padding-10 font-12">自定义样式：</view>
+  <mysearchbar
+    placeholder="文艺复古长裙"
+    className="mytest"
+    @bindsearch.user="searchEvent"
+    @bindcancel.user="cancelEvent"
+    />
+</template>
+
+<script>
+  import wepy from 'wepy'
+  import Searchbar from 'kai-ui/SearchBar'
+
+  export default class SearchbarPage extends wepy.page {
+    config = {
+      navigationBarTitleText: 'Searchbar 搜索框'
+    }
+    data = {
+      historyKeys: '',
+      datasource: [
+        '优衣库女装',
+        'apple',
+        'Banana',
+        'Orange',
+        'Durian',
+        'Lemon',
+        'Peach',
+        'Cherry',
+        'Berry',
+        'Core',
+        'Fig',
+        'Haw',
+        'Melon',
+        'Plum',
+        'Pear',
+        'Peanut',
+        '优衣库女装',
+        'apple',
+        'Banana',
+        'Orange',
+        'Durian',
+        'Lemon',
+        'Peach',
+        'Cherry',
+        'Berry',
+        'Core',
+        'Fig',
+        'Haw',
+        'Melon',
+        'Plum',
+        'Pear',
+        'Peanut',
+        'Other'
+      ]
+    }
+    components = {
+      searchbar: Searchbar,
+      mysearchbar: Searchbar
+    }
+    methods = {
+      searchEvent (value) {
+        console.log('搜索：' + value)
+      },
+      cancelEvent () {
+        wx.navigateBack({
+          delta: 1
+        })
+      }
+    }
+  }
+</script>
+
+<style lang="less">
+  .mytest {
+    .searchbar {
+      .searchbar-form__wrap {
+        border-radius:50px;
+      }
+      .searchbar-form__cancel {
+        color:#4b0;
+      }
+    }
+  }
+</style>

@@ -1,0 +1,78 @@
+<style lang="less">
+  .bg-white{
+    background-color: #fff;
+    .font-12{
+      margin-bottom: 15px;
+    }
+    .numberpicker{
+      margin-bottom: 10px;
+    }
+  }
+</style>
+<template>
+  <view class="kai-content">
+    <view class="bg-white padding-10">
+      <view class="font-12">正常样式</view>
+      <repeat for="{{first.list}}" index="index" item="item">
+        <numberpicker :num="item" :index="index" :config="first.config"/>
+      </repeat>
+    </view>
+    <view class="bg-white padding-10">
+      <view class="font-12">小size样式</view>
+      <repeat for="{{second.list}}" index="index" item="item">
+        <numberpicker :num="item" :index="index" :config="second.config"/>
+      </repeat>
+    </view>
+    <!-- <button @tap="save">保存</button> -->
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+  import NumberPicker from 'kai-ui/NumberPicker'
+
+  export default class NumberPickerPage extends wepy.page {
+    config = {
+      navigationBarTitleText: 'NumberPicker 数字输入框'
+    }
+    data = {
+      first: {
+        list: [1],
+        config: {
+          size: 'medium',
+          step: 1,
+          // min: 1,
+          // max: 5,
+          callbackFn: 'firstListChange'
+        }
+      },
+      second: {
+        list: [5, 6, 7],
+        config: {
+          step: 1,
+          min: 3,
+          max: 10,
+          callbackFn: 'secondListChange'
+        }
+      }
+    }
+    components = {
+      numberpicker: NumberPicker
+    }
+
+    methods = {
+      save () {
+        console.log(this.first.list, this.second.list)
+      }
+    }
+
+    events = {
+      firstListChange (index, value) {
+        this.first.list[index] = value
+      },
+      secondListChange (index, value) {
+        this.second.list[index] = value
+      }
+    }
+  }
+</script>
