@@ -1,0 +1,231 @@
+<style lang="less">
+  .panel .info {
+    padding: 0;
+  }
+  .cell {
+    margin: 0;
+  }
+  .icon-img{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 60vw;
+    font-size: 50px;
+    font-weight: bold;
+    font-style: italic;
+    color: #999;
+  }
+</style>
+<template>
+  <view class="kai-content">
+    <view class="icon-img">
+      kai-ui
+    </view>
+    <repeat for="{{cellDemoList}}" index="index" item="item" key="panel-{{index}}">
+      <panel>
+        <view slot="title" class="title">{{item.title}}</view>
+        <block>
+          <cell :celldata="item.list"></cell>
+        </block>
+      </panel>
+    </repeat>
+    <view class="padding-10"></view>
+  </view>
+</template>
+
+<script>
+import wepy from 'wepy'
+import cell from 'kai-ui/Cell'
+import panel from 'kai-ui/Panel'
+
+export default class Index extends wepy.page {
+  config = {
+    navigationBarTitleText: '主页'
+  }
+
+  components = {
+    cell: cell,
+    panel: panel
+  }
+
+  data = {
+    cellDemoList: [
+      {
+        title: '布局',
+        list: [
+          {
+            title: 'Layout 布局',
+            linktype: 1,
+            link: 'layout'
+          },
+          {
+            title: 'Grid 宫格',
+            linktype: 1,
+            link: 'grid'
+          },
+          {
+            title: 'Cell 列表',
+            linktype: 1,
+            link: 'cell'
+          },
+          {
+            title: 'Panel 面板',
+            linktype: 1,
+            link: 'panel'
+          }
+        ]
+      },
+      {
+        title: '基础组件',
+        list: [
+          {
+            title: 'Button 按钮',
+            linktype: 1,
+            link: 'button'
+          },
+          {
+            title: 'Icon 图标',
+            linktype: 1,
+            link: 'icon'
+          },
+          {
+            title: 'LoadMore 更多',
+            linktype: 1,
+            link: 'loadmore'
+          },
+          {
+            title: 'Tag 标记',
+            linktype: 1,
+            link: 'tag'
+          },
+          {
+            title: 'Helper 基础样式',
+            linktype: 1,
+            link: 'helper'
+          }
+        ]
+      },
+      {
+        title: '导航组件',
+        list: [
+          {
+            title: 'Popup 弹出层',
+            linktype: 1,
+            link: 'popup'
+          },
+          {
+            title: 'NoticeBar 通知栏',
+            linktype: 1,
+            link: 'noticebar'
+          },
+          {
+            title: 'Tab 标签',
+            linktype: 1,
+            link: 'tab'
+          },
+          {
+            title: 'Step 步骤条',
+            linktype: 1,
+            link: 'step'
+          }
+        ]
+      },
+      {
+        title: '操作提示组件',
+        list: [
+          {
+            title: 'ActionSheet 操作盘',
+            linktype: 1,
+            link: 'actionsheet'
+          },
+          {
+            title: 'Toptips 顶部提示',
+            linktype: 1,
+            link: 'toptips'
+          },
+          {
+            title: 'Dialog 弹出框',
+            linktype: 1,
+            link: 'dialog'
+          },
+          {
+            title: 'Toast 轻提示',
+            linktype: 1,
+            link: 'toast'
+          }
+        ]
+      },
+      {
+        title: '表单组件',
+        list: [
+          {
+            title: 'Uploader 上传',
+            linktype: 1,
+            link: 'uploader'
+          },
+          {
+            title: 'Select 选择',
+            linktype: 1,
+            link: 'select'
+          },
+          {
+            title: 'Checkbox 复选框',
+            linktype: 1,
+            link: 'checkbox'
+          },
+          {
+            title: 'Radio 单选框',
+            linktype: 1,
+            link: 'radio'
+          },
+          {
+            title: 'NumberPicker 数字输入框',
+            linktype: 1,
+            link: 'numberpicker'
+          },
+          {
+            title: 'Switch 开关',
+            linktype: 1,
+            link: 'switch'
+          },
+          {
+            title: 'Input 输入框',
+            linktype: 1,
+            link: 'input'
+          }
+        ]
+      },
+      {
+        title: '搜索组件',
+        list: [
+          {
+            title: 'Searchbar 搜索框',
+            linktype: 1,
+            link: 'searchbar'
+          }
+        ]
+      }
+    ]
+  }
+
+  computed = {}
+
+  methods = {
+    translateToPage (name) {
+      wx.navigateTo({url: name})
+    }
+  }
+
+  events = {
+    'item-tap': (type, url) => {
+      console.log(url)
+      wx.navigateTo({
+        url: url
+      })
+    }
+  }
+
+  onLoad() {}
+}
+</script>
